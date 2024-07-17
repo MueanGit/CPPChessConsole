@@ -16,9 +16,9 @@ void ChessPiece::updateValidPos()
     validPos.clear();
 }
 
-void ChessPiece::capture(std::unique_ptr<ChessPiece> opponent)
+void ChessPiece::capture(ChessPiece& opponent)
 {
-    opponent->beCaptured();
+    opponent.beCaptured();
 }
 
 void ChessPiece::beCaptured()

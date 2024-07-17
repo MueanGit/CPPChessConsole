@@ -13,7 +13,7 @@ public:
     
     virtual void move(int pos);
     virtual void updateValidPos();
-    void capture(std::unique_ptr<ChessPiece> opponent);
+    void capture(ChessPiece& opponent);
     void beCaptured();
 
     friend std::ostream& operator<<(std::ostream& os, const ChessPiece& piece);
