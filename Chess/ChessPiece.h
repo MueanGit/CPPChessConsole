@@ -12,7 +12,7 @@ public:
     virtual ~ChessPiece()=default;
     
     virtual void move(int pos);
-    virtual void updateValidPos(){validPos.clear();}
+    virtual void updateValidPos();
     void capture(std::unique_ptr<ChessPiece> opponent);
     void beCaptured();
 
@@ -23,7 +23,7 @@ public:
     bool white0Black1;
     std::pair<int, int> position;
     int getID(){return id;}
-    std::vector<std::pair<int,int>> getValidPos() const {return validPos;}
+    std::vector<std::pair<int,int>> getValidPos();
     void printValidPos();
 
 private:

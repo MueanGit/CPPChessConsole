@@ -1,6 +1,7 @@
 #include "ChessGame.h"
 
 #include <string>
+#include <unordered_set>
 
 #include "Bishop.h"
 #include "ChessPiece.h"
@@ -110,4 +111,60 @@ void ChessGame::initializeBoard()
     pieceMap[id++] = board[0][4].get();
     board[7][4] = std::make_unique<King>(true, id, std::make_pair(7,4));
     pieceMap[id++] = board[7][4].get();
+}
+
+void ChessGame::displayValidMove(ChessPiece piece)
+{
+    auto validMoves = piece.getValidPos();
+    // Every valid move of the piece will get a number assigned, which will be store in a map
+    // The number will be display on the square
+    // The player can then type that number to move to that square
+    // Example: "1,1": 2
+    //          "1,2": 3
+    std::unordered_map<std::string,int> validMovesMap;
+
+    // Lambda for converting for example [1,1] to "1,1"
+    auto posToStr = [&](int r, int c) -> std::string
+    {
+      return std::to_string(r)+","+std::to_string(c);
+    };
+    
+    for(int i=0; i<validMoves.size(); i++)
+    {
+        std::string key = posToStr(validMoves[i].first, validMoves[i].second);
+        validMovesMap[key] = i;
+    }
+    
+    for(int i=0; i<board.size(); i++)
+    {
+        for(int j=0; j<board[i].size(); j++)
+        {
+            std::cout << "[";
+            std::string posStr = posToStr(i,j);
+            if(board[i][j])
+            {
+                if(validMovesMap.contains(posStr))
+                {
+                    //Add 0 if 1 bit
+                    std::string num = std::to_string(validMovesMap[posStr]);
+                    if(validMovesMap[posStr]<10) num.insert(0,"0");
+                    std::cout << *board[i][j] << "!"<<num<<"!";
+                }
+                else
+                {
+                    //Add 0 if 1 bit
+                    std::string id = std::to_string(board[i][j]->getID());
+                    if(board[i][j]->getID()<10) id.insert(0,"0");
+                    std::cout << *board[i][j] << "("<<id<<")";
+                }
+            }
+            else
+                if(validMovesMap.contains(posStr))
+                    std::cout << ".."<<validMovesMap[posStr]<<"..";
+                else
+                    std::cout << ".....";
+            std::cout << "]";
+        }
+        std::cout << "\n";
+    }
 }

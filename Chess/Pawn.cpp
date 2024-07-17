@@ -47,3 +47,4 @@ void Pawn::updateValidPos()
     bFirstMove = false;
 }
 
+

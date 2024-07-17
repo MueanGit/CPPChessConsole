@@ -9,12 +9,23 @@ void ChessPiece::move(int pos)
 {
 }
 
+void ChessPiece::updateValidPos()
+{
+    validPos.clear();
+}
+
 void ChessPiece::capture(std::unique_ptr<ChessPiece> opponent)
 {
 }
 
 void ChessPiece::beCaptured()
 {
+}
+
+std::vector<std::pair<int, int>> ChessPiece::getValidPos()
+{
+    updateValidPos();
+    return validPos;
 }
 
 void ChessPiece::printValidPos()
