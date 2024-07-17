@@ -12,6 +12,7 @@
 #include "Rook.h"
 
 std::vector<std::vector<std::unique_ptr<ChessPiece>>> ChessGame::board;
+std::unordered_map<int, ChessPiece*> ChessGame::pieceMap;
 
 ChessGame::ChessGame()
 {
@@ -25,7 +26,7 @@ ChessGame::ChessGame()
     initializeBoard();
 }
 
-void ChessGame::printBoard() const
+void ChessGame::printBoard()
 {
     for(const auto &row: board)
     {
@@ -56,6 +57,12 @@ bool ChessGame::bIsSquareEmpty(int row, int col)
 bool ChessGame::inBound(int row, int col)
 {
     return row>=0 && row<8 && col>=0 && col<8;
+}
+
+void ChessGame::deleteFromPieceMap(int id)
+{
+    delete pieceMap[id];
+    pieceMap.erase(id);
 }
 
 void ChessGame::initializeBoard()
@@ -133,8 +140,10 @@ void ChessGame::displayValidMove(ChessPiece& piece)
     {
         std::string key = posToStr(validMoves[i].first, validMoves[i].second);
         validMovesMap[key] = i;
+        piece.numPos[i] = {validMoves[i].first, validMoves[i].second};
     }
-    
+    std::string separator(56, '*');
+    std::cout << separator << "\n";
     for(int i=0; i<board.size(); i++)
     {
         for(int j=0; j<board[i].size(); j++)
@@ -150,12 +159,22 @@ void ChessGame::displayValidMove(ChessPiece& piece)
                     if(validMovesMap[posStr]<10) num.insert(0,"0");
                     std::cout << *board[i][j] << "<"<<validMovesMap[posStr]<<">";
                 }
+                //Check if the piece is black or white
                 else
                 {
-                    //Add 0 if 1 bit
-                    std::string id = std::to_string(board[i][j]->getID());
-                    if(board[i][j]->getID()<10) id.insert(0,"0");
-                    std::cout << *board[i][j] << "("<<id<<")";
+                    // Only print number of the team in turn
+                    if(board[i][j]->white0Black1 == piece.white0Black1)
+                    {
+                        //Add 0 if 1 bit
+                        std::string id = std::to_string(board[i][j]->getID());
+                        if(board[i][j]->getID()<10) id.insert(0,"0");
+                        std::cout << *board[i][j] << "("<<id<<")";
+                    }
+                    else
+                    {
+                        std::cout << ".." << *board[i][j]<<"..";
+                    }
+                    
                 }
             }
             else
@@ -167,4 +186,10 @@ void ChessGame::displayValidMove(ChessPiece& piece)
         }
         std::cout << "\n";
     }
+    std::cout << separator << "\n";
+}
+
+std::unordered_map<int, ChessPiece*> ChessGame::getPieceMap()
+{
+    return pieceMap;
 }

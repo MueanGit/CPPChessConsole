@@ -1,9 +1,9 @@
 #pragma once
 
 #include <iostream>
+#include <unordered_map>
 #include <vector>
 
-//Abstract class
 class ChessPiece
 {
 public:
@@ -25,6 +25,8 @@ public:
     int getID(){return id;}
     std::vector<std::pair<int,int>> getValidPos();
     void printValidPos();
+    //Will be updated in the displayValidMove function
+    std::unordered_map<int, std::pair<int,int>> numPos;
 
 private:
     int id;

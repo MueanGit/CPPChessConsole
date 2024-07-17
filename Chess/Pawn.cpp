@@ -13,7 +13,7 @@ void Pawn::move(int pos)
 {
     ChessPiece::move(pos);
     updateValidPos();
-    
+    bFirstMove = false;
 }
 
 void Pawn::updateValidPos()
@@ -43,8 +43,7 @@ void Pawn::updateValidPos()
     if (ChessGame::inBound(row + direction, col + 1) && !ChessGame::bIsSquareEmpty(row + direction, col + 1) && ChessGame::board[row + direction][col + 1]->white0Black1 != white0Black1) {
         validPos.push_back({row + direction, col + 1});
     }
-
-    bFirstMove = false;
+    
 }
 
 
