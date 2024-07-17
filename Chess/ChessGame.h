@@ -13,7 +13,7 @@ public:
     static std::vector<std::vector<std::unique_ptr<class ChessPiece>>> board;
     static bool inBound(int row, int col);
 
-    void displayValidMove(ChessPiece piece);
+    void displayValidMove(ChessPiece& piece);
 private:
     
     void initializeBoard();

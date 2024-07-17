@@ -113,7 +113,7 @@ void ChessGame::initializeBoard()
     pieceMap[id++] = board[7][4].get();
 }
 
-void ChessGame::displayValidMove(ChessPiece piece)
+void ChessGame::displayValidMove(ChessPiece& piece)
 {
     auto validMoves = piece.getValidPos();
     // Every valid move of the piece will get a number assigned, which will be store in a map
@@ -148,7 +148,7 @@ void ChessGame::displayValidMove(ChessPiece piece)
                     //Add 0 if 1 bit
                     std::string num = std::to_string(validMovesMap[posStr]);
                     if(validMovesMap[posStr]<10) num.insert(0,"0");
-                    std::cout << *board[i][j] << "!"<<num<<"!";
+                    std::cout << *board[i][j] << "<"<<validMovesMap[posStr]<<">";
                 }
                 else
                 {
@@ -160,7 +160,7 @@ void ChessGame::displayValidMove(ChessPiece piece)
             }
             else
                 if(validMovesMap.contains(posStr))
-                    std::cout << ".."<<validMovesMap[posStr]<<"..";
+                    std::cout << ".<"<<validMovesMap[posStr]<<">.";
                 else
                     std::cout << ".....";
             std::cout << "]";
