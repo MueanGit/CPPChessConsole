@@ -40,7 +40,7 @@ void ChessPiece::beCaptured()
     if(ChessGame::getPieceMap().contains(id))
     {
         ChessGame::deleteFromPieceMap(id);
-        ChessGame::board[position.first][position.second].reset(nullptr);
+        ChessGame::board[position.first][position.second].reset();
     }
 }
 

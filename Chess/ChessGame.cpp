@@ -11,7 +11,7 @@
 #include "Queen.h"
 #include "Rook.h"
 
-std::vector<std::vector<std::unique_ptr<ChessPiece>>> ChessGame::board;
+std::vector<std::vector<std::shared_ptr<ChessPiece>>> ChessGame::board;
 std::unordered_map<int, ChessPiece*> ChessGame::pieceMap;
 
 ChessGame::ChessGame()
@@ -28,6 +28,8 @@ ChessGame::ChessGame()
 
 void ChessGame::printBoard()
 {
+    std::string separator(56, '*');
+    std::cout << separator << "\n";
     for(const auto &row: board)
     {
         for(const auto &elem: row)
@@ -46,6 +48,7 @@ void ChessGame::printBoard()
         }
         std::cout << "\n";
     }
+    std::cout << separator << "\n";
 }
 
 bool ChessGame::bIsSquareEmpty(int row, int col)
@@ -141,7 +144,7 @@ void ChessGame::displayValidMove(ChessPiece& piece)
     {
         std::string key = posToStr(validMoves[i].first, validMoves[i].second);
         validMovesMap[key] = i;
-        piece.numPos[i] = {validMoves[i].first, validMoves[i].second};
+        piece.inputToPos[i] = {validMoves[i].first, validMoves[i].second};
     }
     std::string separator(56, '*');
     std::cout << separator << "\n";

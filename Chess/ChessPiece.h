@@ -26,7 +26,7 @@ public:
     std::vector<std::pair<int,int>> getValidPos();
     void printValidPos();
     //Will be updated in the displayValidMove function
-    std::unordered_map<int, std::pair<int,int>> numPos;
+    std::unordered_map<int, std::pair<int,int>> inputToPos;
 
 private:
     int id;

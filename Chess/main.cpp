@@ -4,35 +4,28 @@
 #include "ChessGame.h"
 #include "Pawn.h"
 
+using namespace std;
+
 
 int main(int argc, char* argv[])
 {
     using namespace std;
 
-    unique_ptr<ChessGame> game(new ChessGame());
+    ChessGame game;
+
+    auto test = ChessGame::board[6][1];
+
+    ChessGame::board[5][2] = make_unique<Pawn>(0,99,make_pair(5,2));
+    ChessGame::displayValidMove(*test);
+    test->printValidPos();
+
+    int buffer;
+    cout << "Type the number of the position you want to move to:\n";
+    cin >> buffer;
     
-    
-    game->displayValidMove(*game->board[6][1]);
-    game->board[6][1]->printValidPos();
-
-    game->displayValidMove(*game->board[6][1]);
-    game->board[6][1]->printValidPos();
-
-    game->board[5][2] = make_unique<Pawn>(0,99,make_pair(5,2));
-    game->displayValidMove(*game->board[6][1]);
-    game->board[6][1]->printValidPos();
-
-    game->board[6][1]->move({5,2});
-    game->displayValidMove(*game->board[6][1]);
-    game->board[6][1]->printValidPos();
-
-    /*game->board[2][1] = make_unique<Pawn>(1,55,make_pair(2,1));
-    game->displayValidMove(*game->board[6][1]);
-    game->board[6][1]->printValidPos();*/
-
-    /*game->board[2][2] = make_unique<Pawn>(1,44,make_pair(2,2));
-    game->displayValidMove(*game->board[6][1]);
-    game->board[6][1]->printValidPos();*/
+    test->move(test->inputToPos[buffer]);
+    ChessGame::displayValidMove(*test);
+    test->printValidPos();
     
     return 0;
 }
