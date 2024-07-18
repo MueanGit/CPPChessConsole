@@ -9,9 +9,9 @@ Pawn::Pawn(bool whiteOrBlack, int id, std::pair<int,int> position)
     else symbol = "♙";
 }
 
-void Pawn::move(std::pair<int, int> pos)
+void Pawn::move(std::pair<int, int> posToMove)
 {
-    ChessPiece::move(pos);
+    ChessPiece::move(posToMove);
     bFirstMove = false;
 }
 

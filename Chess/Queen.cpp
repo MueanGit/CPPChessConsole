@@ -7,7 +7,7 @@ Queen::Queen(bool whiteOrBlack, int id, std::pair<int,int> position)
     else symbol = "♕"; // White
 }
 
-void Queen::move(std::pair<int, int> pos)
+void Queen::move(std::pair<int, int> posToMove)
 {
-    ChessPiece::move(pos);
+    ChessPiece::move(posToMove);
 }

@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
     game->displayValidMove(*game->board[6][1]);
     game->board[6][1]->printValidPos();
 
-    game->board[6][1]->move({4,1});
+    game->board[6][1]->move({5,2});
     game->displayValidMove(*game->board[6][1]);
     game->board[6][1]->printValidPos();
 

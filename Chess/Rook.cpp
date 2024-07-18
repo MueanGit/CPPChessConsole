@@ -6,7 +6,7 @@ Rook::Rook(bool whiteOrBlack, int id, std::pair<int,int> position)
     if(whiteOrBlack) symbol = "♜"; // Black
     else symbol = "♖"; // White
 }
-void Rook::move(std::pair<int, int> pos)
+void Rook::move(std::pair<int, int> posToMove)
 {
-    ChessPiece::move(pos);
+    ChessPiece::move(posToMove);
 }

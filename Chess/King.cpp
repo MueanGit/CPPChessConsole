@@ -7,7 +7,7 @@ King::King(bool whiteOrBlack, int id, std::pair<int,int> position)
     else symbol = "♔"; // White
 }
 
-void King::move(std::pair<int, int> pos)
+void King::move(std::pair<int, int> posToMove)
 {
-    ChessPiece::move(pos);
+    ChessPiece::move(posToMove);
 }
