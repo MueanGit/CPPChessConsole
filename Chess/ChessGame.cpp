@@ -65,11 +65,6 @@ void ChessGame::deleteFromPieceMap(int id)
     pieceMap.erase(id);
 }
 
-void ChessGame::initializePiece(bool bBlack, int id, std::pair<int, int> pos)
-{
-    board[pos.first][pos.second] = std::make_unique<Pawn>(false, id, pos);
-    pieceMap[id] = board[pos.first][pos.second].get();
-}
 
 void ChessGame::initializeBoard()
 {

@@ -20,12 +20,6 @@ void ChessPiece::move(std::pair<int, int> pos)
     {
         capture(*ChessGame::board[pos.first][pos.second]);
     }
-    else //Redundant?
-    {
-        std::cout << "This position has already be possessed by an ally" << std::endl;
-        return;
-    }
-    position = pos;
 }
 
 void ChessPiece::updateValidPos()

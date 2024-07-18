@@ -22,6 +22,10 @@ int main(int argc, char* argv[])
     game->displayValidMove(*game->board[6][1]);
     game->board[6][1]->printValidPos();
 
+    game->board[6][1]->move({4,1});
+    game->displayValidMove(*game->board[6][1]);
+    game->board[6][1]->printValidPos();
+
     /*game->board[2][1] = make_unique<Pawn>(1,55,make_pair(2,1));
     game->displayValidMove(*game->board[6][1]);
     game->board[6][1]->printValidPos();*/
