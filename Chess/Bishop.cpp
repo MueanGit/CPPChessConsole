@@ -7,7 +7,7 @@ Bishop::Bishop(bool whiteOrBlack, int id, std::pair<int,int> position)
     else symbol = "♗"; // White
 }
 
-void Bishop::move(int pos)
+void Bishop::move(std::pair<int, int> pos)
 {
     ChessPiece::move(pos);
 }

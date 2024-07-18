@@ -11,7 +11,7 @@ public:
     ChessPiece(bool whiteOrBlack, int id, std::pair<int,int> position);
     virtual ~ChessPiece()=default;
     
-    virtual void move(int pos);
+    virtual void move(std::pair<int, int> pos);
     virtual void updateValidPos();
     void capture(ChessPiece& opponent);
     void beCaptured();

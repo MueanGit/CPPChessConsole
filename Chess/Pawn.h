@@ -5,9 +5,9 @@
 class Pawn: public ChessPiece
 {
 public:
-    Pawn(){};
+    Pawn() = default;
     Pawn(bool whiteOrBlack, int id, std::pair<int,int> position);
-    void move(int pos) override;
+    void move(std::pair<int, int> pos) override;
     void updateValidPos() override;
 
     

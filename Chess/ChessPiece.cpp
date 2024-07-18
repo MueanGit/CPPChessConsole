@@ -7,8 +7,25 @@ ChessPiece::ChessPiece(bool whiteOrBlack, int id, std::pair<int,int> position)
 {
 }
 
-void ChessPiece::move(int pos)
+void ChessPiece::move(std::pair<int, int> pos)
 {
+    updateValidPos();
+    if(std::ranges::find(validPos, pos)==validPos.end())
+    {
+        std::cout << "You cannot move to that position" << std::endl;
+        return;
+    }
+    //if is enemy
+    if(ChessGame::board[pos.first][pos.second]&&ChessGame::board[pos.first][pos.second]->white0Black1 != white0Black1)
+    {
+        capture(*ChessGame::board[pos.first][pos.second]);
+    }
+    else //Redundant?
+    {
+        std::cout << "This position has already be possessed by an ally" << std::endl;
+        return;
+    }
+    position = pos;
 }
 
 void ChessPiece::updateValidPos()

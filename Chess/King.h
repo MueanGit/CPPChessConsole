@@ -6,6 +6,6 @@ class King: public ChessPiece
 public:
     King(){};
     King(bool whiteOrBlack, int id, std::pair<int,int> position);
-    void move(int pos) override;
+    void move(std::pair<int, int> pos) override;
     
 };

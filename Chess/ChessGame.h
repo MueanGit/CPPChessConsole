@@ -18,6 +18,8 @@ public:
     static std::unordered_map<int, ChessPiece*> getPieceMap();
     
     static void deleteFromPieceMap(int id);
+
+    void initializePiece(bool bBlack, int id, std::pair<int,int> pos);
     
 private:
     
