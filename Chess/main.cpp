@@ -3,6 +3,7 @@
 
 #include "ChessGame.h"
 #include "Knight.h"
+#include "Rook.h"
 #include "Pawn.h"
 
 using namespace std;
@@ -14,10 +15,11 @@ int main(int argc, char* argv[])
 
     ChessGame game;
 
-    ChessGame::board[4][3] = make_unique<Knight>(0,99,make_pair(4,3));
-    auto test = ChessGame::board[4][3];
-
-    ChessGame::board[5][2] = make_unique<Pawn>(0,99,make_pair(5,2));
+    ChessGame::board[5][4] = make_unique<Rook>(0,88,make_pair(5,4));
+    ChessGame::board[3][5] = make_unique<Knight>(1,77,make_pair(3,5));
+    auto test = ChessGame::board[5][4];
+    ChessGame::printBoard();
+    
     ChessGame::displayValidMove(*test);
     test->printValidPos();
 

@@ -34,5 +34,7 @@ protected:
     virtual void updateValidPos();
     std::vector<std::pair<int,int>> validPos;
     bool canMoveTo(int row, int col);
+    //Dont have inbound check
+    bool isEnemy(int row, int col);
     
 };

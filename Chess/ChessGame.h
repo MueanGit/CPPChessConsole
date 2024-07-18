@@ -16,7 +16,6 @@ public:
     static void displayValidMove(ChessPiece& piece);
     static std::unordered_map<int, ChessPiece*> getPieceMap();
     static void deleteFromPieceMap(int id);
-
     
 private:
     
@@ -26,5 +25,4 @@ private:
     //Retrieve the piece by ID use this map
     //White has an odd ID and black has even ID
     static std::unordered_map<int, ChessPiece*> pieceMap;
-    
 };

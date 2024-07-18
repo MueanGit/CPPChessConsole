@@ -64,8 +64,8 @@ bool ChessGame::inBound(int row, int col)
 
 void ChessGame::deleteFromPieceMap(int id)
 {
-    delete pieceMap[id];
     pieceMap.erase(id);
+    delete pieceMap[id];
 }
 
 
