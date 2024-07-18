@@ -2,6 +2,7 @@
 #include <memory>
 
 #include "ChessGame.h"
+#include "Knight.h"
 #include "Pawn.h"
 
 using namespace std;
@@ -13,7 +14,8 @@ int main(int argc, char* argv[])
 
     ChessGame game;
 
-    auto test = ChessGame::board[6][1];
+    ChessGame::board[4][3] = make_unique<Knight>(0,99,make_pair(4,3));
+    auto test = ChessGame::board[4][3];
 
     ChessGame::board[5][2] = make_unique<Pawn>(0,99,make_pair(5,2));
     ChessGame::displayValidMove(*test);
@@ -26,6 +28,11 @@ int main(int argc, char* argv[])
     test->move(test->inputToPos[buffer]);
     ChessGame::displayValidMove(*test);
     test->printValidPos();
+
+    // Wait for user input to prevent the console from closing
+    std::cout << "Press Enter to close the console...";
+    std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear any previous input
+    std::cin.get(); // Wait for Enter key
     
     return 0;
 }

@@ -9,7 +9,7 @@ public:
     ChessGame();
     static void printBoard();
 
-    static bool bIsSquareEmpty(int row, int col);
+    static bool isSquareEmpty(int row, int col);
     static std::vector<std::vector<std::shared_ptr<class ChessPiece>>> board;
     static bool inBound(int row, int col);
 

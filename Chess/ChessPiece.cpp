@@ -30,6 +30,13 @@ void ChessPiece::updateValidPos()
     validPos.clear();
 }
 
+bool ChessPiece::canMoveTo(int row, int col)
+{
+    if(!ChessGame::inBound(row,col)) return false;
+    if(ChessGame::board[row][col]==nullptr) return true;
+    return ChessGame::board[row][col]->white0Black1 != white0Black1;
+}
+
 void ChessPiece::capture(ChessPiece& opponent)
 {
     opponent.beCaptured();

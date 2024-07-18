@@ -12,7 +12,6 @@ public:
     virtual ~ChessPiece()=default;
     
     virtual void move(std::pair<int, int> posToMove);
-    virtual void updateValidPos();
     void capture(ChessPiece& opponent);
     void beCaptured();
 
@@ -32,6 +31,8 @@ private:
     int id;
 
 protected:
+    virtual void updateValidPos();
     std::vector<std::pair<int,int>> validPos;
+    bool canMoveTo(int row, int col);
     
 };

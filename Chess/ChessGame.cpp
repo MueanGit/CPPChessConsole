@@ -51,7 +51,7 @@ void ChessGame::printBoard()
     std::cout << separator << "\n";
 }
 
-bool ChessGame::bIsSquareEmpty(int row, int col)
+bool ChessGame::isSquareEmpty(int row, int col)
 {
     if(board[row][col]) return false;
     return true;
