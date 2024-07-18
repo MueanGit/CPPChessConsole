@@ -1,9 +1,5 @@
-# Common IntelliJ Platform excludes
-
 .idea
-
 *.sln
-
 *.suo
 *.user
 .vs/
@@ -11,7 +7,6 @@
 [Oo]bj/
 _UpgradeReport_Files/
 [Pp]ackages/
-
 Thumbs.db
 Desktop.ini
 .DS_Store
