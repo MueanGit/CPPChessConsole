@@ -222,9 +222,30 @@ void ChessGame::initializeBoard()
     pieceMap[id++] = board[7][4].get();
 }
 
+void ChessGame::promote(Pawn pawn)
+{
+    int row = pawn.position.first;
+    int col = pawn.position.second;
+
+    int id = pawn.getID();
+
+    std::unique_ptr<Queen> newQueen = std::make_unique<Queen>(pawn.white0Black1,id,pawn.position);
+    board[row][col] = nullptr;
+    board[row][col] = std::move(newQueen);
+    deleteFromPieceMap(id);
+    pieceMap[id]= board[row][col].get();
+}
+
 void ChessGame::displayValidMove(ChessPiece& piece)
 {
     auto validMoves = piece.getValidPos();
+
+    if(validMoves.size()==0)
+    {
+        std::cout <<"!!!!!This piece cannot be moved, select another one\n";
+        return; 
+    }
+        
     // Every valid move of the piece will get a number assigned, which will be store in a map
     // The number will be display on the square
     // The player can then type that number to move to that square

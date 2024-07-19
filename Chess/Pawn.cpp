@@ -12,7 +12,18 @@ Pawn::Pawn(bool whiteOrBlack, int id, std::pair<int,int> position)
 void Pawn::move(std::pair<int, int> posToMove)
 {
     ChessPiece::move(posToMove);
+    if(std::ranges::find(validPos, posToMove)==validPos.end()) return;
     bFirstMove = false;
+    if(white0Black1) //Black
+    {
+        if(position.first==0)
+            ChessGame::promote(*this);
+    }
+    else
+    {
+        if(position.first==7)
+            ChessGame::promote(*this);
+    }
 }
 
 void Pawn::updateValidPos()

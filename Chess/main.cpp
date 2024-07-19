@@ -11,23 +11,39 @@
 
 using namespace std;
 
+int getValidatedIntInput()
+{
+    int value;
+    while (true) {
+        std::cin >> value;
+        if (std::cin.fail()) {
+            std::cin.clear(); // Clear the error flag
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard invalid input
+            std::cout << "Invalid input. Please enter a valid integer: ";
+        } else {
+            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Discard remaining input
+            return value;
+        }
+    }
+}
+
 void game()
 {
     ChessGame game;
     while(!ChessGame::getIsGameOver())
     {
-    select:
-        ChessGame::turn();
+        select:
+            ChessGame::turn();
         int unitToMove=INT_MAX;
         do{
-            cin >> unitToMove;
+            unitToMove = getValidatedIntInput();
         }while (!ChessGame::selectPiece(unitToMove));
         const auto selected = ChessGame::pieceMap[unitToMove];
         do{
             std::cout << "Type a negative number to select another piece\n";
             ChessGame::displayValidMove(*selected);
             int posToMove = INT_MIN;
-            std::cin >> posToMove;
+            posToMove = getValidatedIntInput();
             if(posToMove<0)
                 goto select;
             selected->move(selected->inputToPos[posToMove]);

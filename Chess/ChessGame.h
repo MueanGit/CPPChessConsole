@@ -2,6 +2,8 @@
 #include <vector>
 #include <memory>
 #include <unordered_map>
+
+
 //1
 class ChessGame
 {
@@ -33,11 +35,16 @@ public:
     //White has an odd ID and black has even ID
     static std::unordered_map<int, ChessPiece*> pieceMap;
     
+    static void promote(class Pawn pawn);
+    
 private:
     
     void initializeBoard();
     static bool bBlackTurn;
     static bool bIsGameOver;
-
+    
+    
     
 };
+
+
