@@ -16,21 +16,24 @@ void game()
     ChessGame game;
     while(!ChessGame::getIsGameOver())
     {
+    select:
         ChessGame::turn();
-
         int unitToMove=INT_MAX;
         do{
             cin >> unitToMove;
-        }while (ChessGame::selectPiece(unitToMove));
+        }while (!ChessGame::selectPiece(unitToMove));
         const auto selected = ChessGame::pieceMap[unitToMove];
         do{
+            std::cout << "Type a negative number to select another piece\n";
             ChessGame::displayValidMove(*selected);
             int posToMove = INT_MIN;
             std::cin >> posToMove;
-    
+            if(posToMove<0)
+                goto select;
             selected->move(selected->inputToPos[posToMove]);
         }while(!ChessGame::bJustMoved);
     }
+    ChessGame::printBoard();
 }
 
 int main(int argc, char* argv[])

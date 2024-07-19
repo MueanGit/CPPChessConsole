@@ -111,11 +111,12 @@ bool ChessGame::selectPiece(int num)
 void ChessGame::gameOver(bool winner)
 {
     bIsGameOver = true;
-    std::cout << "Game over! ";
-    if(winner)
-        std::cout << "White has won."<<std::endl;
+    std::cout << "!!!!!!!!!! Game over! ";
+    if(!winner)
+        std::cout << "White has won. ";
     else
-        std::cout << "Black has won."<<std::endl;
+        std::cout << "Black has won. ";
+    std::cout << "!!!!!!!!!!"<<std::endl;
 }
 
 void ChessGame::turn()
