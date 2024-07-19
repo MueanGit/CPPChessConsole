@@ -13,7 +13,7 @@ public:
     
     virtual void move(std::pair<int, int> posToMove);
     void capture(ChessPiece& opponent);
-    void beCaptured();
+    virtual void beCaptured();
 
     friend std::ostream& operator<<(std::ostream& os, const ChessPiece& piece);
 

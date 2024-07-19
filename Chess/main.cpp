@@ -11,33 +11,34 @@
 
 using namespace std;
 
+void game()
+{
+    ChessGame game;
+    while(!ChessGame::getIsGameOver())
+    {
+        ChessGame::turn();
+
+        int unitToMove=INT_MAX;
+        do{
+            cin >> unitToMove;
+        }while (ChessGame::selectPiece(unitToMove));
+        const auto selected = ChessGame::pieceMap[unitToMove];
+        do{
+            ChessGame::displayValidMove(*selected);
+            int posToMove = INT_MIN;
+            std::cin >> posToMove;
+    
+            selected->move(selected->inputToPos[posToMove]);
+        }while(!ChessGame::bJustMoved);
+    }
+}
 
 int main(int argc, char* argv[])
 {
     using namespace std;
-
-    ChessGame game;
-
-    ChessGame::board[3][1] = make_unique<King>(1,88,make_pair(3,1));
-    ChessGame::board[4][3] = make_unique<King>(0,77,make_pair(4,3));
-    auto test = ChessGame::board[3][1];
-    ChessGame::printBoard();
     
-    ChessGame::displayValidMove(*test);
-    test->printValidPos();
-
-    while(true)
-    {
-        int buffer;
-        cout << "Type the number of the position you want to move to:\n";
-        cin >> buffer;
+    game();
     
-        test->move(test->inputToPos[buffer]);
-        ChessGame::displayValidMove(*test);
-        test->printValidPos();
-    }
-    
-
     // Wait for user input to prevent the console from closing
     std::cout << "Press Enter to close the console...";
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear any previous input

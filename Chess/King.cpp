@@ -1,5 +1,7 @@
 #include "King.h"
 
+#include "ChessGame.h"
+
 King::King(bool whiteOrBlack, int id, std::pair<int,int> position)
 :ChessPiece{whiteOrBlack, id, position}
 {
@@ -11,6 +13,12 @@ King::King(bool whiteOrBlack, int id, std::pair<int,int> position)
 void King::move(std::pair<int, int> posToMove)
 {
     ChessPiece::move(posToMove);
+}
+
+void King::beCaptured()
+{
+    ChessPiece::beCaptured();
+    ChessGame::gameOver(!white0Black1);
 }
 
 void King::updateValidPos()

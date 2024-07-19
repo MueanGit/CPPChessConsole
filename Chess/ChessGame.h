@@ -17,14 +17,27 @@ public:
     static std::unordered_map<int, ChessPiece*> getPieceMap();
     static void deleteFromPieceMap(int id);
 
-    static bool checkIfInCheck(ChessPiece& pieceJustMoved);
-    
-private:
-    
-    void initializeBoard();
+    // Is always called after a player has isInCheck
+    static bool isInCheck(ChessPiece& pieceJustMoved);
+    static bool bJustMoved;
+
+    // Game
+    static bool selectPiece(int num);
+    static void gameOver(bool winner);
+    static bool getIsGameOver() {return bIsGameOver;}
+
+    static void turn();
 
     //Every piece on the board get a corresponding id
     //Retrieve the piece by ID use this map
     //White has an odd ID and black has even ID
     static std::unordered_map<int, ChessPiece*> pieceMap;
+    
+private:
+    
+    void initializeBoard();
+    static bool bBlackTurn;
+    static bool bIsGameOver;
+
+    
 };

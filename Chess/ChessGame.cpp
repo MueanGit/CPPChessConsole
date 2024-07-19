@@ -13,9 +13,15 @@
 
 std::vector<std::vector<std::shared_ptr<ChessPiece>>> ChessGame::board;
 std::unordered_map<int, ChessPiece*> ChessGame::pieceMap;
+bool ChessGame::bBlackTurn;
+bool ChessGame::bIsGameOver;
+bool ChessGame::bJustMoved;
 
 ChessGame::ChessGame()
 {
+    bIsGameOver = false;
+    bBlackTurn = true;
+    bJustMoved = false;
     board.resize(8);
     for(auto &row: board)
     {
@@ -68,8 +74,9 @@ void ChessGame::deleteFromPieceMap(int id)
     delete pieceMap[id];
 }
 
-bool ChessGame::checkIfInCheck(ChessPiece& pieceJustMove)
+bool ChessGame::isInCheck(ChessPiece& pieceJustMove)
 {
+    bBlackTurn = !bBlackTurn;
     for(const auto &pos: pieceJustMove.getValidPos())
     {
         if(board[pos.first][pos.second]&&board[pos.first][pos.second]->getIsKing())
@@ -81,6 +88,83 @@ bool ChessGame::checkIfInCheck(ChessPiece& pieceJustMove)
     return false;
 }
 
+bool ChessGame::selectPiece(int num)
+{
+    if(!pieceMap.contains(num))
+    {
+        std::cout << "That unit does not exist!"<<std::endl;
+        return false;
+    }
+    if(bBlackTurn && num%2 != 0)
+    {
+        std::cout << "Please select your own piece(black)\n";
+        return false;
+    }
+    if(!bBlackTurn && num%2 == 0)
+    {
+        std::cout << "Please select your own piece(white)\n";
+        return false;
+    }
+    return true;
+}
+
+void ChessGame::gameOver(bool winner)
+{
+    bIsGameOver = true;
+    std::cout << "Game over! ";
+    if(winner)
+        std::cout << "White has won."<<std::endl;
+    else
+        std::cout << "Black has won."<<std::endl;
+}
+
+void ChessGame::turn()
+{
+    bJustMoved = false;
+    std::string separator(56, '*');
+    std::cout << separator << "\n";
+
+    for(const auto &row: board)
+    {
+        for(const auto &elem: row)
+        {
+            std::cout << "[";
+            if(elem)
+            {
+                //Check whose turn, only display the number that can be isInCheck by current player
+                if(elem->white0Black1==bBlackTurn)
+                {
+                    std::string id = std::to_string(elem->getID());
+                    if(elem->getID()<10) id.insert(0,"0");
+                    std::cout << *elem << "("<<id<<")";
+                }
+                else
+                {
+                    std::cout << ".."<<*elem<<"..";
+                }
+            }
+            else
+                std::cout << ".....";
+            std::cout << "]";
+        }
+        std::cout << "\n";
+    }
+
+    if(bBlackTurn)
+    {
+        std::cout << "It is now black turn, "
+                     "select the number (without 0 in the front) "
+                     "of the piece you want to move.\n";
+    }
+    else
+    {
+        std::cout << "It is now white turn, "
+                     "select the number (without 0 in the front) "
+                     "of the piece you want to move.\n";
+    }
+    
+    std::cout << separator << "\n";
+}
 
 void ChessGame::initializeBoard()
 {
@@ -207,6 +291,7 @@ void ChessGame::displayValidMove(ChessPiece& piece)
         }
         std::cout << "\n";
     }
+    std::cout << "Type the number of position in <> you want to move to\n";
     std::cout << separator << "\n";
 }
 

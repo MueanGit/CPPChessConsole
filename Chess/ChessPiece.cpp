@@ -10,6 +10,7 @@ ChessPiece::ChessPiece(bool whiteOrBlack, int id, std::pair<int,int> position)
 void ChessPiece::move(std::pair<int, int> posToMove)
 {
     updateValidPos();
+    ChessGame::bJustMoved = true;
     if(std::ranges::find(validPos, posToMove)==validPos.end())
     {
         std::cout << "You cannot move to that position" << std::endl;
@@ -23,7 +24,7 @@ void ChessPiece::move(std::pair<int, int> posToMove)
     ChessGame::board[posToMove.first][posToMove.second] = std::move(ChessGame::board[position.first][position.second]);
     ChessGame::board[position.first][position.second] = nullptr;
     position = posToMove;
-    ChessGame::checkIfInCheck(*this);
+    ChessGame::isInCheck(*this);
 }
 
 void ChessPiece::updateValidPos()
