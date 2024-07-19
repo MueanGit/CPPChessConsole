@@ -79,7 +79,8 @@ bool ChessGame::isInCheck(ChessPiece& pieceJustMove)
     bBlackTurn = !bBlackTurn;
     for(const auto &pos: pieceJustMove.getValidPos())
     {
-        if(board[pos.first][pos.second]&&board[pos.first][pos.second]->getIsKing())
+        if(!inBound(pos.first,pos.second)) return false;
+        if(board[pos.first][pos.second]&&board[pos.first][pos.second]->getIsKing())//Problem
         {
             std::cout << "Checkmate!" << std::endl;
             return true;

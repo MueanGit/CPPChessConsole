@@ -9,13 +9,13 @@ ChessPiece::ChessPiece(bool whiteOrBlack, int id, std::pair<int,int> position)
 
 void ChessPiece::move(std::pair<int, int> posToMove)
 {
-    updateValidPos();
-    ChessGame::bJustMoved = true;
+    //updateValidPos();
+    /*ChessGame::bJustMoved = true;
     if(std::ranges::find(validPos, posToMove)==validPos.end())
     {
         std::cout << "You cannot move to that position" << std::endl;
         return;
-    }
+    }*/
     //if is enemy
     if(canMoveTo(posToMove.first, posToMove.second) && isEnemy(posToMove.first,posToMove.second))
     {
