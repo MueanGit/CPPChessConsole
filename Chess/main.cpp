@@ -3,6 +3,7 @@
 
 #include "Bishop.h"
 #include "ChessGame.h"
+#include "King.h"
 #include "Knight.h"
 #include "Rook.h"
 #include "Pawn.h"
@@ -17,14 +18,14 @@ int main(int argc, char* argv[])
 
     ChessGame game;
 
-    ChessGame::board[5][4] = make_unique<Queen>(0,88,make_pair(5,4));
+    ChessGame::board[3][1] = make_unique<King>(1,88,make_pair(3,1));
     ChessGame::board[3][5] = make_unique<Knight>(1,77,make_pair(3,5));
-    auto test = ChessGame::board[5][4];
+    auto test = ChessGame::board[3][1];
     ChessGame::printBoard();
     
     ChessGame::displayValidMove(*test);
     test->printValidPos();
-
+    
     int buffer;
     cout << "Type the number of the position you want to move to:\n";
     cin >> buffer;
