@@ -161,7 +161,7 @@ void ChessGame::displayValidMove(ChessPiece& piece)
                     //Add 0 if 1 bit
                     std::string num = std::to_string(validMovesMap[posStr]);
                     if(validMovesMap[posStr]<10) num.insert(0,"0");
-                    std::cout << *board[i][j] << "<"<<validMovesMap[posStr]<<">";
+                    std::cout << *board[i][j] << "<"<<num<<">";
                 }
                 //Check if the piece is black or white
                 else
@@ -183,7 +183,11 @@ void ChessGame::displayValidMove(ChessPiece& piece)
             }
             else
                 if(validMovesMap.contains(posStr))
-                    std::cout << ".<"<<validMovesMap[posStr]<<">.";
+                {
+                    std::string num = std::to_string(validMovesMap[posStr]);
+                    if(validMovesMap[posStr]<10) num.insert(0,"0");
+                    std::cout << "!<"<<num<<">";
+                }
                 else
                     std::cout << ".....";
             std::cout << "]";

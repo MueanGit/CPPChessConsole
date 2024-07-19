@@ -15,7 +15,6 @@ void Bishop::move(std::pair<int, int> posToMove)
 void Bishop::updateValidPos()
 {
     ChessPiece::updateValidPos();
-    ChessPiece::updateValidPos();
     const int row = position.first;
     const int col = position.second;
 

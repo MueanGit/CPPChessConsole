@@ -6,6 +6,7 @@
 #include "Knight.h"
 #include "Rook.h"
 #include "Pawn.h"
+#include "Queen.h"
 
 using namespace std;
 
@@ -16,7 +17,7 @@ int main(int argc, char* argv[])
 
     ChessGame game;
 
-    ChessGame::board[5][4] = make_unique<Bishop>(0,88,make_pair(5,4));
+    ChessGame::board[5][4] = make_unique<Queen>(0,88,make_pair(5,4));
     ChessGame::board[3][5] = make_unique<Knight>(1,77,make_pair(3,5));
     auto test = ChessGame::board[5][4];
     ChessGame::printBoard();
