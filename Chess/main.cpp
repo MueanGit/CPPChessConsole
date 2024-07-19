@@ -1,6 +1,7 @@
 #include <iostream>
 #include <memory>
 
+#include "Bishop.h"
 #include "ChessGame.h"
 #include "Knight.h"
 #include "Rook.h"
@@ -15,7 +16,7 @@ int main(int argc, char* argv[])
 
     ChessGame game;
 
-    ChessGame::board[5][4] = make_unique<Rook>(0,88,make_pair(5,4));
+    ChessGame::board[5][4] = make_unique<Bishop>(0,88,make_pair(5,4));
     ChessGame::board[3][5] = make_unique<Knight>(1,77,make_pair(3,5));
     auto test = ChessGame::board[5][4];
     ChessGame::printBoard();
