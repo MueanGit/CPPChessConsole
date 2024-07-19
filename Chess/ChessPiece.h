@@ -26,6 +26,7 @@ public:
     void printValidPos();
     //Will be updated in the displayValidMove function
     std::unordered_map<int, std::pair<int,int>> inputToPos;
+    bool getIsKing(){return bIsKing;}
 
 private:
     int id;
@@ -36,5 +37,5 @@ protected:
     bool canMoveTo(int row, int col);
     //Dont have inbound check
     bool isEnemy(int row, int col);
-    
+    bool bIsKing = false;
 };

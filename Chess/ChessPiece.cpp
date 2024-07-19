@@ -23,6 +23,7 @@ void ChessPiece::move(std::pair<int, int> posToMove)
     ChessGame::board[posToMove.first][posToMove.second] = std::move(ChessGame::board[position.first][position.second]);
     ChessGame::board[position.first][position.second] = nullptr;
     position = posToMove;
+    ChessGame::checkIfInCheck(*this);
 }
 
 void ChessPiece::updateValidPos()

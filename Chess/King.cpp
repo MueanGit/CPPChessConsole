@@ -3,6 +3,7 @@
 King::King(bool whiteOrBlack, int id, std::pair<int,int> position)
 :ChessPiece{whiteOrBlack, id, position}
 {
+    bIsKing = true;
     if(whiteOrBlack) symbol = "♚"; // Black
     else symbol = "♔"; // White
 }

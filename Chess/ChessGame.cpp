@@ -68,6 +68,19 @@ void ChessGame::deleteFromPieceMap(int id)
     delete pieceMap[id];
 }
 
+bool ChessGame::checkIfInCheck(ChessPiece& pieceJustMove)
+{
+    for(const auto &pos: pieceJustMove.getValidPos())
+    {
+        if(board[pos.first][pos.second]&&board[pos.first][pos.second]->getIsKing())
+        {
+            std::cout << "Checkmate!" << std::endl;
+            return true;
+        }
+    }
+    return false;
+}
+
 
 void ChessGame::initializeBoard()
 {

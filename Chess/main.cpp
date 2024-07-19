@@ -19,20 +19,24 @@ int main(int argc, char* argv[])
     ChessGame game;
 
     ChessGame::board[3][1] = make_unique<King>(1,88,make_pair(3,1));
-    ChessGame::board[3][5] = make_unique<Knight>(1,77,make_pair(3,5));
+    ChessGame::board[4][3] = make_unique<King>(0,77,make_pair(4,3));
     auto test = ChessGame::board[3][1];
     ChessGame::printBoard();
     
     ChessGame::displayValidMove(*test);
     test->printValidPos();
+
+    while(true)
+    {
+        int buffer;
+        cout << "Type the number of the position you want to move to:\n";
+        cin >> buffer;
     
-    int buffer;
-    cout << "Type the number of the position you want to move to:\n";
-    cin >> buffer;
+        test->move(test->inputToPos[buffer]);
+        ChessGame::displayValidMove(*test);
+        test->printValidPos();
+    }
     
-    test->move(test->inputToPos[buffer]);
-    ChessGame::displayValidMove(*test);
-    test->printValidPos();
 
     // Wait for user input to prevent the console from closing
     std::cout << "Press Enter to close the console...";

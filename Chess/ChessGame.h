@@ -16,6 +16,8 @@ public:
     static void displayValidMove(ChessPiece& piece);
     static std::unordered_map<int, ChessPiece*> getPieceMap();
     static void deleteFromPieceMap(int id);
+
+    static bool checkIfInCheck(ChessPiece& pieceJustMoved);
     
 private:
     
