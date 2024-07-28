@@ -1,5 +1,10 @@
 #include <iostream>
 #include <memory>
+#include <iostream>
+#include <climits>
+#include <io.h>
+#include <fcntl.h>
+#include <locale>
 
 #include "Bishop.h"
 #include "ChessGame.h"
@@ -57,13 +62,6 @@ int main(int argc, char* argv[])
     using namespace std;
     
     game();
-
-    /*ChessGame game;
-    ChessGame::printBoard();
-    ChessGame::board[0][3]->beCaptured();
-    ChessGame::printBoard();
-    ChessGame::board[0][4]->move({0,3});
-    ChessGame::printBoard();*/
     
     // Wait for user input to prevent the console from closing
     std::cout << "Press Enter to close the console...";
