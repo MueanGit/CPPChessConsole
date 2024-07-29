@@ -11,12 +11,6 @@
 #include "Queen.h"
 #include "Rook.h"
 
-std::vector<std::vector<std::shared_ptr<ChessPiece>>> ChessGame::board;
-std::unordered_map<int, ChessPiece*> ChessGame::pieceMap;
-bool ChessGame::bBlackTurn;
-bool ChessGame::bIsGameOver;
-bool ChessGame::bJustMoved;
-
 ChessGame::ChessGame()
 {
     bIsGameOver = false;

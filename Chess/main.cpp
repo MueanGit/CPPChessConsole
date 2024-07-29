@@ -67,6 +67,7 @@ int main(int argc, char* argv[])
     std::cout << "Press Enter to close the console...";
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear any previous input
     std::cin.get(); // Wait for Enter key
-    
+
+
     return 0;
 }
