@@ -2,7 +2,7 @@
 #include <memory>
 #include <iostream>
 #include <climits>
-#include <io.h>
+#include <limits>
 #include <fcntl.h>
 #include <locale>
 
