@@ -17,5 +17,4 @@ cd Debug
 Docker
 ```
 docker run -it --rm jzmo/chess
-
 ```
