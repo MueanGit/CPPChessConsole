@@ -9,3 +9,8 @@ cd build
 cmake ../source/
 cmake --build .
 ```
+Run
+```
+cd build/Debug
+./Chess
+```
