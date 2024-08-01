@@ -11,6 +11,6 @@ cmake --build .
 ```
 Run
 ```
-cd build/Debug
+cd Debug
 ./Chess
 ```
