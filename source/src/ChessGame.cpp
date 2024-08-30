@@ -85,7 +85,7 @@ bool ChessGame::isInCheck(ChessPiece& pieceJustMove)
 
 bool ChessGame::selectPiece(int num)
 {
-    if(!pieceMap.contains(num))
+    if(pieceMap.find(num) == pieceMap.end())
     {
         std::cout << "That unit does not exist!"<<std::endl;
         return false;
@@ -270,7 +270,7 @@ void ChessGame::displayValidMove(ChessPiece& piece)
             std::string posStr = posToStr(i,j);
             if(board[i][j])
             {
-                if(validMovesMap.contains(posStr))
+                if(validMovesMap.find(posStr) != validMovesMap.end())
                 {
                     //Add 0 if 1 bit
                     std::string num = std::to_string(validMovesMap[posStr]);
@@ -296,7 +296,7 @@ void ChessGame::displayValidMove(ChessPiece& piece)
                 }
             }
             else
-                if(validMovesMap.contains(posStr))
+                if(validMovesMap.find(posStr) != validMovesMap.end())
                 {
                     std::string num = std::to_string(validMovesMap[posStr]);
                     if(validMovesMap[posStr]<10) num.insert(0,"0");

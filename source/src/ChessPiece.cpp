@@ -1,6 +1,7 @@
 #include "ChessPiece.h"
-
 #include "ChessGame.h"
+
+#include <algorithm>
 
 ChessPiece::ChessPiece(bool whiteOrBlack, int id, std::pair<int,int> position)
     :white0Black1(whiteOrBlack), id(id), position(position)
@@ -11,11 +12,19 @@ void ChessPiece::move(std::pair<int, int> posToMove)
 {
     updateValidPos();
     ChessGame::bJustMoved = true;
-    if(std::ranges::find(validPos, posToMove)==validPos.end())
-    {
+    bool found = false;
+    for (const auto& pos : validPos) {
+        if (pos == posToMove) {
+            found = true;
+            break;
+        }
+    }
+
+    if (!found) {
         std::cout << "You cannot move to that position" << std::endl;
         return;
     }
+    
     //if is enemy
     if(canMoveTo(posToMove.first, posToMove.second) && isEnemy(posToMove.first,posToMove.second))
     {
@@ -53,7 +62,7 @@ void ChessPiece::capture(ChessPiece& opponent)
 
 void ChessPiece::beCaptured()
 {
-    if(ChessGame::getPieceMap().contains(id))
+    if(ChessGame::getPieceMap().find(id) != ChessGame::getPieceMap().end())
     {
         ChessGame::deleteFromPieceMap(id);
         ChessGame::board[position.first][position.second].reset();
